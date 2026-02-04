@@ -2,15 +2,19 @@
 
 ## Project Structure
 
-- `config/`: Configuration files.
-- `src/`: Source code.
-  - `core/`: Core framework (Agent, Tool, Registry).
-  - `tools/`: Tool implementation and definition.
-  - `agent/`: MolQuest agent logic.
-  - `utils/`: Utility functions.
-- `tests/`: Unit and integration tests.
+The project is organized into the following directories:
 
-## Usage
+- **`config/`**: Configuration files (e.g., `settings.yaml`) defining model parameters, prompt templates, and system settings.
+- **`data/`**: Datasets and example files used for agent execution and evaluation (e.g., `molecules_final.json`).
+- **`scripts/`**: Command-line scripts for batch processing, performance evaluation, and data maintenance.
+  - `analyze/`: Tools for calculating metrics and visualizing results.
+  - `batch_run.py`: Script for executing batch experiments across multiple samples.
+- **`src/`**: Main source code directory.
+  - **`agent/`**: Implementation of the MolQuest agent logic (`chem_detective.py`) and state management (`state.py`).
+  - **`core/`**: Core infrastructure including base agent classes, tool registry, logging, and LLM adapters.
+  - **`tools/`**: Implementation of chemical analysis simulation tools (NMR, MS, IR, etc.).
+  - **`utils/`**: Helper functions for molecule data handling, validation, and execution tracing.
+- **`tests/`**: Unit and integration tests.Usage
 
 This project uses [uv](https://github.com/astral-sh/uv) for dependency management.
 
