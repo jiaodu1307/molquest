@@ -1,0 +1,155 @@
+{
+  "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce",
+  "final_answer": "FINAL_RESULT:\n  UUID: 57337897-7ed2-4be6-bddf-4789f30e39ce\n  PREDICTED_SMILES: Cc1ccc(c(c1)C)O\n  CONFIDENCE: 0.95\n  REASON_BRIEF: 分子式为 C8H10O，不饱和度为 4。1H NMR 显示存在一个酚羟基、两个甲基，以及一个呈“单峰+邻位偶合双重峰对”特征裂分模式的 1,3,4-三取代苯环，这些证据都明确指向了 3,4-二甲基苯酚的结构。",
+  "steps": [
+    {
+      "step": 0,
+      "type": "human",
+      "content": "你是一名资深有机合成与波谱解析专家，正在一个虚拟实验室中 分析编号为 57337897-7ed2-4be6-bddf-4789f30e39ce 的未知有机小分子。你可以通过调用工具 获取该样品的质谱、1H NMR、13C NMR 等数据，并据此推断其结构。\n【你的目标】 1. 结合可用的谱学和分子信息，对样品进行结构解析。 2. 在信息不足时，合理规划并调用必要的工具获取更多证据。 3. 最终给出一个最合理的候选结构（SMILES 表示），并给出置信度。\n【可用工具】 下面的工具清单由程序在运行时自动注入，始终与实际可调用工具保持一致：\n- Measure_MW(uuid): 获取分子量。返回 float（单位 Da）。\n- Measure_Formula(uuid): 获取分子式。返回字符串，例如 \"C22H32N2O3S\"。\n- Get_13C_NMR(uuid): 获取 13C NMR 峰表/描述文本。返回字符串，例如 \"13C NMR (75 MHz, CDCl3): δ ...\"。\n- Calculate_DBE(uuid): 计算不饱和度 DBE（需要样品存在 SMILES 且 RDKit 可用）。返回 float；若无法计算返回 -1.0（表示未知）。\n- Get_1H_NMR(uuid): 获取 1H NMR 峰表/描述文本。返回字符串，例如 \"1H NMR (300 MHz, CDCl3): δ ...\"。\n- Check_Data(uuid): 查询该样品目前有哪些实验数据记录可用。返回字符串列表，元素为可用工具名，例如 [\"Measure_MW\", \"Get_13C_NMR\", \"Get_IR\"]。\n- Get_IR(uuid): 获取 IR 谱描述文本。常用于确认官能团（如 C=O、O-H 等）是否存在。\n- Get_19F_NMR(uuid): 获取 19F NMR 描述文本。通常仅在分子含 F 时有意义。\n- Get_31P_NMR(uuid): 获取 31P NMR 描述文本。通常仅在分子含 P 时有意义。\n- Get_HRMS(uuid): 获取 HRMS 描述文本/峰信息。常用于确认分子式、同位素峰或精确质量。\n- Get_MS(uuid): 获取 MS（非 HRMS）描述文本/峰信息。常用于估算分子量与观察碎片峰。\n- Get_Melting_Point(uuid): 获取熔点信息。返回字符串（通常包含单位与范围，例如 \"mp 120–122 °C\"）。\n- Get_TLC(uuid): 获取 TLC 信息（Rf、展开剂等）。返回字符串。\n- Get_Optical_Rotation(uuid): 获取旋光度信息（例如 [α]D 值、溶剂、浓度等）。返回字符串。\n【推荐推理流程（可根据实际情况调整）】 1. 首先调用 Measure_MW 和 Measure_Formula 获取分子量与分子式。 2. 使用 Calculate_DBE 计算不饱和度，判断是否可能有环、双键、芳香环等。 3. 调用 Get_1H_NMR 和 Get_13C_NMR，结合积分、化学位移、裂分模式、\n   碳环境等信息建立一个或多个候选骨架。\n4. 如有需要，使用 Check_Substructure 针对关键官能团（羰基、酯、醚、\n   苯环等）进行假设验证。\n5. 在形成一个最合理的候选结构后，给出该结构的 SMILES。 6. 如果信息仍明显不足以支持唯一结构，请明确说明不确定性来源，并给出\n   目前最合理候选及其置信度。\n\n【输出要求（非常重要）】 当你认为已经完成推理且不再需要调用工具时，请在最后一条回复中使用 下述结构化输出，方便后续程序化评估。除了该结构化结果，你可以在前面 先给出自然语言分析，但最终必须包含以下格式的块（键名请严格遵守）：\nFINAL_RESULT:\n  UUID: 57337897-7ed2-4be6-bddf-4789f30e39ce\n  PREDICTED_SMILES: <你给出的候选结构的 SMILES，若无法给出则写 \"UNKNOWN\">\n  CONFIDENCE: <0 到 1 之间的小数，例如 0.8，代表你对该结构的主观置信度>\n  REASON_BRIEF: <用 1–3 句话概括支持该结构的核心证据>\n\n其中： - 如存在多个合理候选，只能在 PREDICTED_SMILES 中给出你认为最优的一个；\n  其他候选可以在自然语言部分说明。\n- 如果你认为数据不足以给出可靠结构，也必须写明 PREDICTED_SMILES=\"UNKNOWN\"，\n  并在 REASON_BRIEF 中解释原因。\n\n当前样品的唯一标识为：57337897-7ed2-4be6-bddf-4789f30e39ce。请从规划调用哪些工具开始，逐步完成 谱学解析与结构归属。\n"
+    },
+    {
+      "step": 1,
+      "type": "ai",
+      "content": [
+        {
+          "type": "text",
+          "text": "好的，我将开始对样品 57337897-7ed2-4be6-bddf-4789f30e39ce 进行结构解析。\n\n第一步，我需要获取该分子的基本信息，即分子量和分子式。这将为后续的结构推断提供基础。我将调用 `Measure_MW` 和 `Measure_Formula` 工具。",
+          "extras": {
+            "signature": "CqcHAXLI2nyX0jADJK+xm7Az8qMnO/mqtiq+KYHOB/GVmS1+kdJfCRR2SaA87MPLgGbPNcDdUvjsqpHi0ltdC9sfAkVrQeRAZiKuhv4ckR/5HliNzGsn8Fou5DO/z0xqZCBiPjocGsMht20VtscmTQ9cbZ2AWOzCo3O/kur+/SIwA/QvCZ1gPOw4Kua9/b44hjzGr9IAyQEyzjEoi6J1XXQk6JUVlLl2CYF2cfDfVN75MkGWm5tUIh0+fUJ8P2VosJ73DFt2fARD6XtsVtukBxjLtidibVgYui34iUJbiVQ8OUwXhu9CRhUgLNmB53ZO5QHaM0YETUYbKuGJVf986Tt+43gaRTsZEiXvGpiG2Zp9bgH0jue7piJRqCyfV7E8lxQH7H5X64Y+Hj/SKgCeI7CIiwnFeM5/ldiWB1n2uvxNlgzwb3vmOaLvpm/k1VS5fWJKCAU4e6bSVotHBTcP1O9t3hw599c0lqCg7xditDbGxIaKusO9O1D38KG4iiyH60ZfMCwbvKfy9tB1A5o12G5xcjA99pin/Ilc4veFSWVUjTBW470sPlRGU4u6irKXd/49Uwu/cAtz877m87fRdDUP0IwYWcORzGv6XHfOfR5EBUab1g3u+J0hEB6FAOBHcZ+98RERwLRXYx5jk0jH+ZSDRvt8lBVayLgK/0K1G6xFQ6a+qEDqlhlwh1bDmwRKF1nuwBIvPTQ+2E8wr7NNfsEe84W0FA7/8iVQoYn7Afii7yQl9xz9uvs+al06/Qkn96hhWAilRHbl8DFlwAU9eE+RJ+BsoZzKH5Vbq4tVoHK8DJ7ocL01+ZZqGm1Ngnckq+RK9TmawOSy9MeRHkSDTD7HAkt5KpBJY2Pko1fTa/+XYX4ZuGBjfSLZ8cfUVmnAeEEe77e55QStPLTrDNVpWh6PQpi9X+BPJXuZVqeMk2UWYzeydMOjx1XtDw7PeDtrSTewy+otmYt2DjFgeqDyNrR62wFNdlN8EejB04AZqrCAIVi+LmEDGPwULlE2Tt2z3ccV9ALS2NH8sWt8qLSQV1vzAUpFW5G+v0OdX5Oq+h+cj6UCwxg9gJL8p5xeiBBxIHyUOU5nt3Jgy3v9hJCVkcruO0A7CZyQ5ygVvSco7Y2bCSUJ+6hmM2Gewmo3s/wX38BJUON81eGO/DNU6PWm6WMux70iaVtZNrMNPvJqjIR1LoOWvBpJMvFBu4ogCv7BxPBOxtjVVtziZ0G88eZtUw85bSOAlNW3FLI="
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "name": "Measure_MW",
+          "args": {
+            "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce"
+          },
+          "id": "6b6d0771-9aec-4188-a259-e6e51f442b45",
+          "type": "tool_call"
+        },
+        {
+          "name": "Measure_Formula",
+          "args": {
+            "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce"
+          },
+          "id": "2f881e99-6936-4082-b535-63bfb677caee",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "type": "tool",
+      "content": "{\"result\": 122.07316494}",
+      "tool_call_id": "6b6d0771-9aec-4188-a259-e6e51f442b45",
+      "tool_name": "Measure_MW",
+      "tool_status": "success"
+    },
+    {
+      "step": 3,
+      "type": "tool",
+      "content": "{\"result\": \"C8H10O\"}",
+      "tool_call_id": "2f881e99-6936-4082-b535-63bfb677caee",
+      "tool_name": "Measure_Formula",
+      "tool_status": "success"
+    },
+    {
+      "step": 4,
+      "type": "ai",
+      "content": [
+        {
+          "type": "text",
+          "text": "好的，任务开始。作为一名有机波谱解析专家，我将按部就班地对样品 57337897-7ed2-4be6-bddf-4789f30e39ce 进行分析。\n\n第一步，获取最基本的信息：分子量和分子式。\n\n我已调用 `Measure_MW` 和 `Measure_Formula` 工具，结果如下：\n- **分子量 (MW):** 122.07316494\n- **分子式 (Formula):** C8H10O\n\n接下来，我将根据分子式计算不饱和度（DBE），并获取核心的 NMR 和 IR 谱图信息来搭建分子骨架。",
+          "extras": {
+            "signature": "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"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "name": "Calculate_DBE",
+          "args": {
+            "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce"
+          },
+          "id": "a353fa51-16f3-40dc-868d-24a984f5e063",
+          "type": "tool_call"
+        },
+        {
+          "name": "Get_1H_NMR",
+          "args": {
+            "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce"
+          },
+          "id": "b8e06ec5-8f8d-44e0-83fa-040e52b203cb",
+          "type": "tool_call"
+        },
+        {
+          "name": "Get_13C_NMR",
+          "args": {
+            "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce"
+          },
+          "id": "3456b3f5-dcde-4237-9d67-40af9ca8d997",
+          "type": "tool_call"
+        },
+        {
+          "name": "Get_IR",
+          "args": {
+            "uuid": "57337897-7ed2-4be6-bddf-4789f30e39ce"
+          },
+          "id": "317527b6-35f3-4a34-8eae-fa9c32e44df7",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "type": "tool",
+      "content": "{\"result\": 4.0}",
+      "tool_call_id": "a353fa51-16f3-40dc-868d-24a984f5e063",
+      "tool_name": "Calculate_DBE",
+      "tool_status": "success"
+    },
+    {
+      "step": 6,
+      "type": "tool",
+      "content": "{\"result\": \"1H NMR (d6-DMSO, 400 MHz) δ = 8.92 (s, 1H), 6.80 (s, 1H), 6.72 (d, J = 8.0 Hz, 1H), 6.61 (d, J = 8.0 Hz, 1H), 2.11 (s, 3H), 2.04 (s, 3H) ppm\"}",
+      "tool_call_id": "b8e06ec5-8f8d-44e0-83fa-040e52b203cb",
+      "tool_name": "Get_1H_NMR",
+      "tool_status": "success"
+    },
+    {
+      "step": 7,
+      "type": "tool",
+      "content": "{\"result\": \"13C NMR (d6-DMSO, 100 MHz) δ = 153.6, 131.6, 127.5, 127.3, 123.9, 114.9, 20.6, 16.5 ppm\"}",
+      "tool_call_id": "3456b3f5-dcde-4237-9d67-40af9ca8d997",
+      "tool_name": "Get_13C_NMR",
+      "tool_status": "success"
+    },
+    {
+      "step": 8,
+      "type": "tool",
+      "content": "{\"error\": \"Sample 57337897-7ed2-4be6-bddf-4789f30e39ce has no 'ir' data.\"}",
+      "tool_call_id": "317527b6-35f3-4a34-8eae-fa9c32e44df7",
+      "tool_name": "Get_IR",
+      "tool_status": "error"
+    },
+    {
+      "step": 9,
+      "type": "ai",
+      "content": [
+        {
+          "type": "text",
+          "text": "初步分析：\n1.  **分子信息**：首先，我获取了分子的基本信息。分子量为 122.07，分子式为 C8H10O。\n2.  **不饱和度 (DBE)**：根据分子式 C8H10O，计算出不饱和度为 4，这强烈暗示分子中存在一个苯环。`Calculate_DBE` 工具的调用结果也证实了这一点。\n3.  **波谱数据解析**：接下来，我获取了该样品的 1H NMR 和 13C NMR 数据。IR 数据不可用，但这通常不会妨碍解析。\n\n*   **13C NMR**：谱图显示共有 8 个碳信号，与分子式中的 8 个碳原子完全对应，表明分子中没有对称性。其中，6 个信号处于 114-154 ppm 的低场区，这是苯环碳的典型化学位移；另外 2 个信号（20.6, 16.5 ppm）位于高场区，是典型的 sp3 杂化碳，应归属于甲基。153.6 ppm 的信号化学位移非常大，表明这是一个与吸电子基团（氧原子）直接相连的芳香碳（C-O）。\n\n*   **1H NMR**：\n    *   质子总数：积分面积相加 (1+1+1+1+3+3) = 10 H，与分子式 C8H10O 中的氢原子数一致。\n    *   **δ = 8.92 (s, 1H)**：在 DMSO 溶剂中，这个化学位移是典型的酚羟基（-OH）质子信号，且为单峰，因为其为活泼氢，不与邻近质子耦合。\n    *   **δ = 2.11 (s, 3H) 和 2.04 (s, 3H)**：这两个信号都是积分为 3H 的单峰，明确指示了分子中存在两个化学环境不同的甲基（-CH3），它们都连接在没有邻近氢原子的原子上（例如苯环）。\n    *   **δ = 6.80 (s, 1H), 6.72 (d, J = 8.0 Hz, 1H), 6.61 (d, J = 8.0 Hz, 1H)**：这是苯环区域的信号，共 3 个质子，说明苯环上有三个取代基。其裂分模式非常关键：一个单峰（singlet）和一对偶合常数 J = 8.0 Hz 的双重峰（doublet）。8.0 Hz 是典型的芳环邻位偶合常数。这个“单峰 + 邻位偶合双重峰对”的模式是 1,3,4-三取代苯环的特征裂分模式。\n\n**结构推断**：\n结合以上信息，我们可以确定分子结构是一个二甲基苯酚（Dimethylphenol）。\n1.  **基本骨架**：一个苯环，上面连接着一个 -OH 基团和两个 -CH3 基团。\n2.  **取代模式**：1H NMR 的芳香区裂分模式（一个单峰，一对邻位偶合的双重峰）强烈指向 1,3,4-三取代的模式。\n3.  **最终结构**：将 -OH、-CH3、-CH3 这三个基团以 1,3,4 的方式排列在苯环上，唯一可能的结构就是 **3,4-二甲基苯酚**。\n    *   该结构（3,4-二甲基苯酚）符合 C8H10O 的分子式。\n    *   其不对称性与 13C NMR 的 8 个信号峰吻合。\n    *   其苯环上的质子分别位于 2、5、6 号位，H-2 没有邻近质子，出单峰；H-5 和 H-6 互为邻位，裂分为两个双重峰。这与 1H NMR 的实验数据完美匹配。\n\n所有光谱数据都高度一致地指向 3,4-二甲基苯酚这一种结构，因此我非常有信心。\n\nFINAL_RESULT:\n  UUID: 57337897-7ed2-4be6-bddf-4789f30e39ce\n  PREDICTED_SMILES: Cc1ccc(c(c1)C)O\n  CONFIDENCE: 0.95\n  REASON_BRIEF: 分子式为 C8H10O，不饱和度为 4。1H NMR 显示存在一个酚羟基、两个甲基，以及一个呈“单峰+邻位偶合双重峰对”特征裂分模式的 1,3,4-三取代苯环，这些证据都明确指向了 3,4-二甲基苯酚的结构。",
+          "extras": {
+            "signature": "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"
+          }
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "type": "ai",
+      "content": "FINAL_RESULT:\n  UUID: 57337897-7ed2-4be6-bddf-4789f30e39ce\n  PREDICTED_SMILES: Cc1ccc(c(c1)C)O\n  CONFIDENCE: 0.95\n  REASON_BRIEF: 分子式为 C8H10O，不饱和度为 4。1H NMR 显示存在一个酚羟基、两个甲基，以及一个呈“单峰+邻位偶合双重峰对”特征裂分模式的 1,3,4-三取代苯环，这些证据都明确指向了 3,4-二甲基苯酚的结构。"
+    }
+  ]
+}

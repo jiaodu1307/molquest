@@ -1,0 +1,258 @@
+{
+  "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568",
+  "final_answer": "Based on the analysis of the provided spectroscopic data, the following conclusion is reached for the sample with UUID abd4ca00-14a3-49c6-a7d9-ed3da1518568.\n\nFINAL_RESULT:\n  UUID: abd4ca00-14a3-49c6-a7d9-ed3da1518568\n  PREDICTED_SMILES: UNKNOWN\n  CONFIDENCE: 0.2\n  REASON_BRIEF: The molecular formula is confirmed as C12H8N4S, and the spectra indicate a highly symmetric aromatic structure containing a thiocarbonyl (C=S) group and no N-H bonds. However, there are critical and irreconcilable inconsistencies between the 1H and 13C NMR data—specifically, the number of 13C signals (8) is incompatible with the high symmetry suggested by the 1H NMR spectrum and simple, plausible chemical structures. This prevents the conclusive identification of a single structure.",
+  "steps": [
+    {
+      "step": 0,
+      "type": "system",
+      "content": "You are a senior expert in organic synthesis and spectroscopic structure elucidation, working in a laboratory to analyze an unknown small organic molecule with ID abd4ca00-14a3-49c6-a7d9-ed3da1518568. You may call tools to obtain MS, 1H NMR, 13C NMR, and other data, and then infer its structure.\n[Your Objectives] 1. Use all available spectroscopic and molecular information to elucidate the structure. 2. When information is insufficient, plan and call only the necessary tools to collect evidence. 3. Provide the most plausible candidate structure (as SMILES) and a confidence score. 4. Efficiency matters (important): each tool call simulates a real experiment with time and monetary cost.\n   Prioritize correctness of the final structure, but minimize the number of tool calls by reasoning deeply\n   from the data already available.\n\n[Available Tools] The tool list below is injected at runtime and always matches the tools you can actually call:\n- Measure_MW(uuid): Get molecular weight. Returns a float in Da.\n- Measure_Formula(uuid): Get molecular formula. Returns a string, e.g. \"C22H32N2O3S\".\n- Get_13C_NMR(uuid): Get 13C NMR peak list/description text. Returns a string, e.g. \"13C NMR (75 MHz, CDCl3): δ ...\".\n- Calculate_DBE(uuid): Calculate degrees of unsaturation (DBE). Requires sample SMILES and RDKit. Returns a float; returns -1.0 if unavailable (unknown).\n- Get_1H_NMR(uuid): Get 1H NMR peak list/description text. Returns a string, e.g. \"1H NMR (300 MHz, CDCl3): δ ...\".\n- Check_Data(uuid): List which experimental data are available for the sample. Returns a list of tool names, e.g. [\"Measure_MW\", \"Get_13C_NMR\", \"Get_IR\"].\n- Get_IR(uuid): Get IR spectrum description text. Commonly used to confirm functional groups (e.g., C=O, O-H).\n- Get_19F_NMR(uuid): Get 19F NMR description text. Typically meaningful only when the molecule contains F.\n- Get_31P_NMR(uuid): Get 31P NMR description text. Typically meaningful only when the molecule contains P.\n- Get_HRMS(uuid): Get HRMS description text/peak info. Commonly used to confirm molecular formula, isotopic pattern, or exact mass.\n- Get_MS(uuid): Get MS (non-HRMS) description text/peak info. Commonly used to estimate molecular weight and inspect fragment peaks.\n- Get_Melting_Point(uuid): Get melting point information. Returns a string (typically includes unit and range, e.g. \"mp 120–122 °C\").\n- Get_TLC(uuid): Get TLC information (Rf, eluent/solvent system, etc.). Returns a string.\n- Get_Optical_Rotation(uuid): Get optical rotation information (e.g., [α]D value, solvent, concentration). Returns a string.\n[System Behavior Note (important)] - To avoid invalid calls: if you do not call any tool at the very beginning, the system may automatically\n  run Check_Data once to confirm which data are available for the current sample. Unless you truly need to\n  verify availability, you do not have to treat Check_Data as a mandatory first step.\n\n[Suggested Reasoning Workflow (adjust as needed)] 1. Strategy planning: identify the most critical uncertainty first; avoid blindly requesting all spectra.\n   If you are unsure whether certain data exist or want to avoid wasted calls, you may call Check_Data.\n2. Iterative data acquisition (important): acquire data step-by-step. After each tool result, pause to\n   reason and decide whether you are still uncertain. Only then request the next most informative test.\n   Prefer calling at most ONE new tool per iteration unless multiple calls are strictly necessary.\n3. Basic data: call Measure_MW and Measure_Formula to obtain molecular weight and molecular formula. 4. First pass: use Calculate_DBE to estimate unsaturation and form initial hypotheses. 5. Core elucidation: prioritize Get_1H_NMR (and Get_13C_NMR only if needed). Use chemical shifts,\n   integrals, splitting patterns, and carbon environments to build one or more plausible scaffolds.\n6. Targeted validation: only when ambiguity remains, cautiously call Get_IR / Get_HRMS (etc.) to obtain\n   specific discriminating evidence.\n7. Once you have the most plausible candidate structure, provide its SMILES. 8. If the evidence is still clearly insufficient for a unique structure, explicitly state what is uncertain,\n   and provide your best current candidate with an appropriate confidence.\n\n[Output Requirements (very important)] When you believe you are done and no further tool calls are needed, your final reply must include the following structured block (key names must match exactly). You may provide natural-language reasoning before it, but the block below is mandatory:\nFINAL_RESULT:\n  UUID: abd4ca00-14a3-49c6-a7d9-ed3da1518568\n  PREDICTED_SMILES: <SMILES of your best candidate; if you cannot give one, write \"UNKNOWN\">\n  CONFIDENCE: <a decimal between 0 and 1, e.g., 0.8>\n  REASON_BRIEF: <1–3 sentences summarizing the key evidence supporting your choice>\n\nNotes: - If multiple candidates are plausible, you must output only your top choice in PREDICTED_SMILES;\n  you may mention other candidates in the free-text reasoning.\n- If you believe the data are insufficient for a reliable structure, you must set PREDICTED_SMILES=\"UNKNOWN\"\n  and explain why in REASON_BRIEF.\n\nThe unique identifier of the current sample is abd4ca00-14a3-49c6-a7d9-ed3da1518568. Start by planning which tools to call, then proceed step by step to complete the structure elucidation.\n"
+    },
+    {
+      "step": 1,
+      "type": "human",
+      "content": "Please start analyzing sample abd4ca00-14a3-49c6-a7d9-ed3da1518568."
+    },
+    {
+      "step": 2,
+      "type": "ai",
+      "content": [
+        {
+          "type": "text",
+          "text": "Okay, let's begin the analysis of sample abd4ca00-14a3-49c6-a7d9-ed3da1518568. My first step will be to determine the molecular formula and molecular weight of the compound. This information is fundamental to any structure elucidation effort.",
+          "extras": {
+            "signature": "CucFAY89a195lBera3cI6yotsMYATiQzzhIO1yfARSJh+pxfdzd2XEWWK+IkFCYLqyT3vZY+dV8qZ6Wltk4soXvH0SPM/VF/2UdxoxDMoq2pXsQklxQHHBJmL39OYAZXTDoFdkDBh7kr3dspOlP34ADYuu7LPikKyaUG4CLuj4Vtoms//RqVCAaZ3PZROyWiQLma7/WkNPF51N5+7vBITJL7OjKwnutKR2QPeisyU3R5dbNdHof0V+FZZl8WkSzZlvHf5AkYCc36NnUB1kVOp7GePN/aiOJWkHQY304nA0+TQr5zawDJYTROabTzbOgzQMr6iCesX0zro4TV31q1Co4Y3tjBHSg/bXNz3AC96OheunFQH939xjp4D7B/BucR6M/UQU0r2c4ai0KWkNCZJpkGgjd7vgCZX3NdKocxo0wHhyA0HWh8ik/FUBtDHu7AXKJoalnxqJtDpWuu4Tr8xO3ysW1QOnlHKiJwBtzlb9LReWp2zAoV/m8cKKdQTzOTU/Kp4CMcV/osC5l36FCPlvfhj/rQmZnMg6u9XV2qlmFeWe66abc6VUTHoOLSd4PJiyfWuxT9vIYA8oaXoC0ibyTg7iXmrv8V1BMTRyOpGuS5hAxOA4iuggpamEJEPAfQHjP/A1bHJW0lEz49+IhprA6nqm3zOivf+UJ7Cob30Fj2rLnBalVWCvbM/l0x8cuvkEjah0HIRWbeoCuBPX+QWrzwAFEYrH1JCNuifYuBKIgect3zoDOo6VfKx5fo2OxtAma5ego5pWW5iWiPgiyTYoUySU8/cLge9TbMwiIIA3QcF8/Y/t0S7D9Cm3M6p86OyIQCrI3xDtuew+gRwXcq1v7M7ikf2ScRKZx0Yz/LYYDjObBgRApz5xBPycWXeKCrtkFA4JWFjpX/OSgBc5McCnmB46u2MOLM4zduqm38tBdT2iFu3GdMvnnUNMuydjuQps3QNIBN4aY6qhKiso6LWN/EqOxyBDI1+qU="
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "name": "Measure_Formula",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "a1f85c83-343a-4163-8c58-4a7c22530bf1",
+          "type": "tool_call"
+        },
+        {
+          "name": "Measure_MW",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "9c4e36f8-ca12-4f3a-b06f-5df06523319d",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "type": "tool",
+      "content": "{\"result\": \"C12H8N4S\"}",
+      "tool_call_id": "a1f85c83-343a-4163-8c58-4a7c22530bf1",
+      "tool_name": "Measure_Formula",
+      "tool_status": "success"
+    },
+    {
+      "step": 4,
+      "type": "tool",
+      "content": "{\"result\": 240.291}",
+      "tool_call_id": "9c4e36f8-ca12-4f3a-b06f-5df06523319d",
+      "tool_name": "Measure_MW",
+      "tool_status": "success"
+    },
+    {
+      "step": 5,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Get_1H_NMR",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "5899b735-b8a5-4e9e-8885-da64b5cd8966",
+          "type": "tool_call"
+        },
+        {
+          "name": "Get_13C_NMR",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "2924a6fe-2c93-4c0c-ac13-9c2cca642272",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "type": "tool",
+      "content": "{\"result\": \"${}^{1}\\\\mathrm{H}$  NMR (500 MHz,  $\\\\mathrm{CDCl}_3$  )  $\\\\delta 8.25 - 8.18$  (m, 4H), 7.65 (d,  $J = 5.0~\\\\mathrm{Hz}$ , 2H), 7.26 (d,  $J = 5.0~\\\\mathrm{Hz}$ , 2H).\"}",
+      "tool_call_id": "5899b735-b8a5-4e9e-8885-da64b5cd8966",
+      "tool_name": "Get_1H_NMR",
+      "tool_status": "success"
+    },
+    {
+      "step": 7,
+      "type": "tool",
+      "content": "{\"result\": \"$^{13}\\\\mathrm{C}$  NMR (126 MHz,  $\\\\mathrm{CDCl}_3$  )  $\\\\delta$  186.9, 171.9, 151.3, 149.9, 139.7, 136.7, 122.5, 121.0.\"}",
+      "tool_call_id": "2924a6fe-2c93-4c0c-ac13-9c2cca642272",
+      "tool_name": "Get_13C_NMR",
+      "tool_status": "success"
+    },
+    {
+      "step": 8,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Get_IR",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "6b93ed84-eb64-4d97-9fbc-265c1ff6562a",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "type": "tool",
+      "content": "{\"result\": \"IR:  $(\\\\mathrm{cm}^{-1})$  3031.55, 2918.52, 1599.80, 1465.55, 1408.07, 1342.88, 1250.16, 1219.05, 1127.72, 1007.20, 823.86, 744.57, 710.39.\"}",
+      "tool_call_id": "6b93ed84-eb64-4d97-9fbc-265c1ff6562a",
+      "tool_name": "Get_IR",
+      "tool_status": "success"
+    },
+    {
+      "step": 10,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Get_MS",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "e1eeafce-ac26-4b03-8a9b-27f51d476106",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "type": "tool",
+      "content": "{\"error\": \"Sample abd4ca00-14a3-49c6-a7d9-ed3da1518568 has no 'ms' data.\"}",
+      "tool_call_id": "e1eeafce-ac26-4b03-8a9b-27f51d476106",
+      "tool_name": "Get_MS",
+      "tool_status": "error"
+    },
+    {
+      "step": 12,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Check_Data",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "2cb08043-da51-435d-9ff3-b68ecb491a88",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 13,
+      "type": "tool",
+      "content": "{\"result\": [\"Measure_MW\", \"Measure_Formula\", \"Get_1H_NMR\", \"Get_13C_NMR\", \"Get_IR\", \"Get_HRMS\", \"Get_TLC\"]}",
+      "tool_call_id": "2cb08043-da51-435d-9ff3-b68ecb491a88",
+      "tool_name": "Check_Data",
+      "tool_status": "success"
+    },
+    {
+      "step": 14,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Get_HRMS",
+          "args": {
+            "uuid": "abd4ca00-14a3-4an9ed3da1518568"
+          },
+          "id": "82ef5c3b-96cd-4a2f-b5af-67bb7e1e7b92",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 15,
+      "type": "tool",
+      "content": "{\"error\": \"Sample abd4ca00-14a3-4an9ed3da1518568 not found.\"}",
+      "tool_call_id": "82ef5c3b-96cd-4a2f-b5af-67bb7e1e7b92",
+      "tool_name": "Get_HRMS",
+      "tool_status": "error"
+    },
+    {
+      "step": 16,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Get_HRMS",
+          "args": {
+            "uuid": "abd4-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "9dc81812-a70e-465b-b23b-052ebc078af2",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 17,
+      "type": "tool",
+      "content": "{\"error\": \"Sample abd4-14a3-49c6-a7d9-ed3da1518568 not found.\"}",
+      "tool_call_id": "9dc81812-a70e-465b-b23b-052ebc078af2",
+      "tool_name": "Get_HRMS",
+      "tool_status": "error"
+    },
+    {
+      "step": 18,
+      "type": "ai",
+      "content": "I will use the tools to retrieve information.",
+      "tool_calls": [
+        {
+          "name": "Get_HRMS",
+          "args": {
+            "uuid": "abd4ca00-14a3-49c6-a7d9-ed3da1518568"
+          },
+          "id": "83627af8-4e3b-4c6a-ba56-cd607c7e7ff6",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "step": 19,
+      "type": "tool",
+      "content": "{\"result\": \"HRMS: calculated for  $\\\\mathrm{C_{12}H_9N_4S}$ $[\\\\mathrm{M + H^{+}}]^{+}$ : 241.0548. Found  $[\\\\mathrm{M + H^{+}}]^{+}$ : 241.0548.\"}",
+      "tool_call_id": "83627af8-4e3b-4c6a-ba56-cd607c7e7ff6",
+      "tool_name": "Get_HRMS",
+      "tool_status": "success"
+    },
+    {
+      "step": 20,
+      "type": "ai",
+      "content": [
+        {
+          "type": "text",
+          "text": "I have gathered and analyzed all the available experimental data for the sample with UUID abd4ca00-14a3-49c6-a7d9-ed3da1518568.\n\nHere is a summary of my findings:\n-   **Molecular Formula**: C12H8N4S (confirmed by `Measure_Formula` and `Get_HRMS`).\n-   **Molecular Weight**: ~240 Da.\n-   **Degrees of Unsaturation (DBE)**: 11, indicating a highly unsaturated, likely aromatic system.\n-   **IR Spectroscopy**: The spectrum shows aromatic C-H stretching but, crucially, no N-H stretching bands, which rules out functional groups like non-tertiary amides or ureas.\n-   **1H NMR Spectroscopy**: The spectrum is simple, suggesting a high degree of symmetry. It shows a 4H multiplet at δ 8.25-8.18 and two 2H doublets at δ 7.65 and δ 7.26. This pattern points to a symmetric molecule containing substituted aromatic rings.\n-   **13C NMR Spectroscopy**: The spectrum shows 8 carbon signals, which, for a molecule with 12 carbons, confirms the presence of molecular symmetry. A particularly informative signal appears at δ 186.9, which is highly characteristic of a thiocarbonyl (C=S) group, likely within a thiourea or a related heterocyclic system.\n\n**Reasoning toward a structure:**\n\nThe combined evidence strongly suggests a symmetric molecule containing a thiocarbonyl group and aromatic nitrogen heterocycles. The absence of N-H protons indicates that all nitrogen atoms are either tertiary or part of an aromatic system. The `1H` NMR pattern is reminiscent of two identical 4-pyridyl groups, which would account for the formula `C10H8N2` and the observed signals. This leaves a `C2N2S` fragment to form the central core of the molecule.\n\nA plausible candidate would be a central thiadiazole ring linking the two pyridyl moieties. However, structures like 2,5-bis(4-pyridyl)-1,3,4-thiadiazole are inconsistent with the `13C` NMR data. Specifically, the number of expected signals for such a highly symmetric structure is lower than the observed 8 signals, and the chemical shift for the thiadiazole carbons is not expected to be as high as 186.9 ppm.\n\nDespite extensive analysis, I could not reconcile all the spectroscopic data into a single, unambiguous structure. The main challenge lies in fitting the downfield `13C` shift of 186.9 ppm and the exact number of `13C` signals with the constraints imposed by the `1H` NMR and the molecular formula. Therefore, I cannot confidently propose a definitive structure.\n\nFINAL_RESULT:\n  UUID: abd4ca00-14a3-49c6-a7d9-ed3da1518568\n  PREDICTED_SMILES: UNKNOWN\n  CONFIDENCE: 0.2\n  REASON_BRIEF: The molecular formula is confirmed as C12H8N4S, and the spectra indicate a highly symmetric aromatic structure containing a thiocarbonyl (C=S) group. However, there are critical inconsistencies between the 1H and 13C NMR data (number of signals and chemical shifts) that prevent the conclusive identification of a single chemical structure.",
+          "extras": {
+            "signature": "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"
+          }
+        }
+      ]
+    },
+    {
+      "step": 21,
+      "type": "ai",
+      "content": "Based on the analysis of the provided spectroscopic data, the following conclusion is reached for the sample with UUID abd4ca00-14a3-49c6-a7d9-ed3da1518568.\n\nFINAL_RESULT:\n  UUID: abd4ca00-14a3-49c6-a7d9-ed3da1518568\n  PREDICTED_SMILES: UNKNOWN\n  CONFIDENCE: 0.2\n  REASON_BRIEF: The molecular formula is confirmed as C12H8N4S, and the spectra indicate a highly symmetric aromatic structure containing a thiocarbonyl (C=S) group and no N-H bonds. However, there are critical and irreconcilable inconsistencies between the 1H and 13C NMR data—specifically, the number of 13C signals (8) is incompatible with the high symmetry suggested by the 1H NMR spectrum and simple, plausible chemical structures. This prevents the conclusive identification of a single structure."
+    }
+  ]
+}

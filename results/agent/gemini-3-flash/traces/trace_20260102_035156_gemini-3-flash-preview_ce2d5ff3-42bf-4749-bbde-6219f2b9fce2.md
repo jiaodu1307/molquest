@@ -1,0 +1,34 @@
+```mermaid
+graph TD
+node_0[User: 你是一名资深有机合成与波谱解析专家，正在一个虚拟实验室中 分析编号为 ce2d5ff3-42bf-4749-bbde-6219f2b9fce2 的未知有机小分子...]
+node_1[AI: Call Measure_Formula, Measure_MW]
+node_0 --> node_1
+node_2[Tool: Measure_Formula (success): {'result': 'C11H14O2'}]
+node_1 --> node_2
+node_3[Tool: Measure_MW (success): {'result': 178.099379688}]
+node_2 --> node_3
+node_4[AI: Call Calculate_DBE, Get_1H_NMR, Get_13C_NMR]
+node_3 --> node_4
+node_5[Tool: Calculate_DBE (success): {'result': 5.0}]
+node_4 --> node_5
+node_6[Tool: Get_1H_NMR (success): {'result': '1H NMR (600 MHz, CDCl3) δ 7.19 (dd, J = 7.6, 1.6 Hz, 1H), 7.09 (td, ...]
+node_5 --> node_6
+node_7[Tool: Get_13C_NMR (success): {'result': '13C NMR (101 MHz, CDCl3) δ 152.90, 131.84, 127.05, 127.03, 121.02, 1...]
+node_6 --> node_7
+node_8[AI: Call Get_IR]
+node_7 --> node_8
+node_9[Tool: Get_IR (error): {'error': 'Sample ce2d5ff3-42bf-4749-bbde-6219f2b9fce2 has no 'ir' data.'}]
+node_8 --> node_9
+node_10[AI: Call Check_Data]
+node_9 --> node_10
+node_11[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR', 'Get_H...]
+node_10 --> node_11
+node_12[AI: Call Get_HRMS]
+node_11 --> node_12
+node_13[Tool: Get_HRMS (success): {'result': 'HRMS (ESI) m/z: M+H+ calculated for C11H15O2+: 179.1067, found 179.1...]
+node_12 --> node_13
+node_14[AI: {'type': 'text', 'text': '根据波谱解析和分子信息，该未知样品的结构推断如下：\n\n1. **分子式与不饱和度**：\n * 分子式为...]
+node_13 --> node_14
+node_15[AI: {'type': 'text', 'text': '根据对该样品的波谱分析及分子信息，结论如下：\n\n1. **分子式与不饱和度**：分子式为 $C_{11}...]
+node_14 --> node_15
+```

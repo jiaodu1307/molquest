@@ -1,0 +1,32 @@
+```mermaid
+graph TD
+node_0[User: 你是一名资深有机合成与波谱解析专家，正在一个虚拟实验室中 分析编号为 ef6a2fc6-54e0-4c12-860c-aae1115fb829 的未知有机小分子...]
+node_1[AI: Call Check_Data]
+node_0 --> node_1
+node_2[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR', 'Get_1...]
+node_1 --> node_2
+node_3[AI: Call Measure_MW, Measure_Formula, Calculate_DBE, Get_1H_NMR, Get_13C_NMR, Get_19F_NMR]
+node_2 --> node_3
+node_4[Tool: Measure_MW (success): {'result': 320.06940000000003}]
+node_3 --> node_4
+node_5[Tool: Measure_Formula (success): {'result': 'C14H15F3O3S'}]
+node_4 --> node_5
+node_6[Tool: Calculate_DBE (success): {'result': 6.0}]
+node_5 --> node_6
+node_7[Tool: Get_1H_NMR (success): {'result': '1H NMR (400 MHz, CDCl3): δ 7.79 – 7.69 (m, 4H), 4.07 (s, 2H), 1.07 (...]
+node_6 --> node_7
+node_8[Tool: Get_13C_NMR (success): {'result': '13C NMR (101 MHz, CDCl3): δ 133.49, 133.23, 133.16, 125.84 (q, J = 3...]
+node_7 --> node_8
+node_9[Tool: Get_19F_NMR (success): {'result': '19F NMR (282 MHz, CDCl3): δ -63.33 (s, 3F, CF3).'}]
+node_8 --> node_9
+node_10[AI: Call Get_IR, Get_HRMS]
+node_9 --> node_10
+node_11[Tool: Get_IR (error): {'error': 'Sample ef6a2fc6-54e0-4c12-860c-aae1115fb829 has no 'ir' data.'}]
+node_10 --> node_11
+node_12[Tool: Get_HRMS (success): {'result': 'HRMS (ESI+): m/z calc’d for C14H15F3O3S (M+NH4)+: 338.1032, found: 3...]
+node_11 --> node_12
+node_13[AI: {'type': 'text', 'text': '通过对样品 ef6a2fc6-54e0-4c12-860c-aae1115fb829 的各项理化数据和谱图信...]
+node_12 --> node_13
+node_14[AI: {'type': 'text', 'text': '根据对该样品的波谱数据（1H NMR, 13C NMR, 19F NMR）以及分子式（C14H15F3O3S...]
+node_13 --> node_14
+```

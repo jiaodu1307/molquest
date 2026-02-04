@@ -1,0 +1,28 @@
+```mermaid
+graph TD
+node_0[User: 你是一名资深有机合成与波谱解析专家，正在一个虚拟实验室中 分析编号为 cd6945ea-43df-4b5c-9cc5-cc0ae8dba922 的未知有机小分子...]
+node_1[AI: Call Measure_Formula, Measure_MW]
+node_0 --> node_1
+node_2[Tool: Measure_Formula (success): {'result': 'C8H7F3O4S'}]
+node_1 --> node_2
+node_3[Tool: Measure_MW (success): {'result': 256.001714364}]
+node_2 --> node_3
+node_4[AI: Call Calculate_DBE, Check_Data, Get_1H_NMR, Get_13C_NMR, Get_19F_NMR, Get_IR]
+node_3 --> node_4
+node_5[Tool: Calculate_DBE (success): {'result': 4.0}]
+node_4 --> node_5
+node_6[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR', 'Get_H...]
+node_5 --> node_6
+node_7[Tool: Get_1H_NMR (success): {'result': 'd 7.20 (d, J = 9.2 Hz, 2H), 6.92 (d, J = 9.2 Hz, 2H), 3.86 (s, 3H)'}]
+node_6 --> node_7
+node_8[Tool: Get_13C_NMR (success): {'result': 'd 159.1, 143.0, 122.3, 118.8 (q, J = 322 Hz), 115.0, 55.7'}]
+node_7 --> node_8
+node_9[Tool: Get_19F_NMR (error): {'error': 'Sample cd6945ea-43df-4b5c-9cc5-cc0ae8dba922 has no 'n19f_nmr' data.'}]
+node_8 --> node_9
+node_10[Tool: Get_IR (error): {'error': 'Sample cd6945ea-43df-4b5c-9cc5-cc0ae8dba922 has no 'ir' data.'}]
+node_9 --> node_10
+node_11[AI: {'type': 'text', 'text': '根据对所获取的波谱数据和分子信息的系统分析，对样品 cd6945ea-43df-4b5c-9cc5-cc0a...]
+node_10 --> node_11
+node_12[AI: {'type': 'text', 'text': '根据对所获取的波谱数据和分子信息的系统分析，该化合物的结构解析如下：\n\n1. **分子式与不饱和度**：...]
+node_11 --> node_12
+```

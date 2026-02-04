@@ -1,0 +1,22 @@
+```mermaid
+graph TD
+node_0[User: 你是一名资深有机合成与波谱解析专家，正在一个虚拟实验室中 分析编号为 11f8f0b9-5db4-49ed-bdde-6a6009feb301 的未知有机小分子...]
+node_1[AI: Call Check_Data, Measure_Formula, Measure_MW]
+node_0 --> node_1
+node_2[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR', 'Get_I...]
+node_1 --> node_2
+node_3[Tool: Measure_Formula (success): {'result': 'C17H26N2O4'}]
+node_2 --> node_3
+node_4[Tool: Measure_MW (success): {'result': 322.18925731199994}]
+node_3 --> node_4
+node_5[AI: Call Get_IR, Get_1H_NMR, Get_13C_NMR]
+node_4 --> node_5
+node_6[Tool: Get_IR (success): {'result': 'IR (neat): 3334, 2974, 2933, 1638, 1606, 1542, 1503, 1479, 1415, 136...]
+node_5 --> node_6
+node_7[Tool: Get_1H_NMR (success): {'result': '1H NMR (500 MHz, CDCl3) δ 7.79 (d, J = 8.4 Hz, 2H), 7.44 (br s, 1H),...]
+node_6 --> node_7
+node_8[Tool: Get_13C_NMR (success): {'result': '13C NMR (126 MHz, CDCl3) δ 167.19, 162.12, 157.74, 128.91, 126.65, 1...]
+node_7 --> node_8
+node_9[AI: {'type': 'text', 'text': '根据已获数据进行解析：\n\n1. **分子式与不饱和度**：\n * MW 实测 322.189 Da，分...]
+node_8 --> node_9
+```

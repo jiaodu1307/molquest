@@ -1,0 +1,29 @@
+```mermaid
+graph TD
+node_1[User: Please start analyzing sample fa7ae217-bb33-43a2-be7f-0a6c34ae5d7c.]
+node_0 --> node_1
+node_2[AI: Call Check_Data, Measure_Formula]
+node_1 --> node_2
+node_3[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR', 'Get_H...]
+node_2 --> node_3
+node_4[Tool: Measure_Formula (success): {'result': 'C37H41F3N2O6SSi'}]
+node_3 --> node_4
+node_5[AI: Call Get_1H_NMR, Get_13C_NMR]
+node_4 --> node_5
+node_6[Tool: Get_1H_NMR (success): {'result': '^{1}H NMR (500 MHz, C6D6): δ 7.83 - 7.76 (m, 4H, ArH), 7.27 - 7.24 (...]
+node_5 --> node_6
+node_7[Tool: Get_13C_NMR (success): {'result': '^{13}C NMR (126 MHz, C6D6): 148.4, 138.7, 136.5, 135.7, 134.7 (q, J ...]
+node_6 --> node_7
+node_8[AI: Call Measure_MW]
+node_7 --> node_8
+node_9[Tool: Measure_MW (success): {'result': 726.89}]
+node_8 --> node_9
+node_10[AI: Call Get_HRMS]
+node_9 --> node_10
+node_11[Tool: Get_HRMS (success): {'result': 'HRMS-ESI (m/z): (M + Na)+ calculated for (C37H41F3N2O6SSiNa)+: 749.2...]
+node_10 --> node_11
+node_12[AI: {'type': 'text', 'text': 'To elucidate the structure of the molecule with ID **f...]
+node_11 --> node_12
+node_13[AI: {'type': 'text', 'text': 'To elucidate the structure of the molecule with ID **f...]
+node_12 --> node_13
+```

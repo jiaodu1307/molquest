@@ -1,0 +1,37 @@
+```mermaid
+graph TD
+node_1[User: Please start analyzing sample 857ccd44-c7ef-41cc-ad12-a7e5704f7aad.]
+node_0 --> node_1
+node_2[AI: Call Measure_Formula, Measure_MW]
+node_1 --> node_2
+node_3[Tool: Measure_Formula (success): {'result': 'C27H28N2O3'}]
+node_2 --> node_3
+node_4[Tool: Measure_MW (success): {'result': 428.532}]
+node_3 --> node_4
+node_5[AI: Call Get_1H_NMR, Get_13C_NMR]
+node_4 --> node_5
+node_6[Tool: Get_1H_NMR (success): {'result': '${}^{1}\\mathbf{H}$ NMR (400 MHz, acetone- $d_{6}$ ) δ 7.54 (d, $J =...]
+node_5 --> node_6
+node_7[Tool: Get_13C_NMR (success): {'result': '$^{13}$ C NMR (101 MHz, acetone- $d_6$ ) δ 210.0, 155.6, 149.1, 147....]
+node_6 --> node_7
+node_8[AI: Call Get_IR]
+node_7 --> node_8
+node_9[Tool: Get_IR (error): {'error': 'Sample 857ccd44-c7ef-41cc-ad12-a7e5704f7aad has no 'ir' data.'}]
+node_8 --> node_9
+node_10[AI: Call Get_MS]
+node_9 --> node_10
+node_11[Tool: Get_MS (error): {'error': 'Sample 857ccd44-c7ef-41cc-ad12-a7e5704f7aad has no 'ms' data.'}]
+node_10 --> node_11
+node_12[AI: Call Get_HRMS]
+node_11 --> node_12
+node_13[Tool: Get_HRMS (success): {'result': 'HRMS (ES+) Calcd for $\\mathrm{C_{27}H_{29}N_2O_3}$ $(\\mathbf{M} + ...]
+node_12 --> node_13
+node_14[AI: Call Check_Data]
+node_13 --> node_14
+node_15[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR', 'Get_H...]
+node_14 --> node_15
+node_16[AI: {'type': 'text', 'text': 'The spectroscopic analysis of the unknown molecule (ID...]
+node_15 --> node_16
+node_17[AI: {'type': 'text', 'text': 'The spectroscopic data for the unknown organic molecul...]
+node_16 --> node_17
+```

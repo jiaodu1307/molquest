@@ -1,0 +1,25 @@
+```mermaid
+graph TD
+node_1[User: Please start analyzing sample a863e2fc-ddae-4d15-b6c4-a530c7f4aa5d.]
+node_0 --> node_1
+node_2[AI: Call Check_Data]
+node_1 --> node_2
+node_3[Tool: Check_Data (success): {'result': ('Measure_MW', 'Measure_Formula', 'Get_1H_NMR', 'Get_13C_NMR')}]
+node_2 --> node_3
+node_4[AI: Call Measure_Formula, Measure_MW, Calculate_DBE, Get_1H_NMR, Get_13C_NMR]
+node_3 --> node_4
+node_5[Tool: Measure_Formula (success): {'result': 'C14H12'}]
+node_4 --> node_5
+node_6[Tool: Measure_MW (success): {'result': 180.25}]
+node_5 --> node_6
+node_7[Tool: Calculate_DBE (success): {'result': 9.0}]
+node_6 --> node_7
+node_8[Tool: Get_1H_NMR (success): {'result': '1H NMR (500 MHz, CDCl3) δ 7.56-7.54 (d, J = 7.5 Hz, 4 H), 7.41-7.38 ...]
+node_7 --> node_8
+node_9[Tool: Get_13C_NMR (success): {'result': '13C NMR (125 MHz, CDCl3) δ 137.35, 128.71, 128.70, 127.64, 126.53'}]
+node_8 --> node_9
+node_10[AI: 根据分子式 C₁₄H₁₂、分子量 180.25 Da 和不饱和度（DBE=9.0），已确定分子骨架高度不饱和，很可能包含一个或多个苯环。¹H NMR 显示全部 ...]
+node_9 --> node_10
+node_11[AI: FINAL_RESULT: UUID: a863e2fc-ddae-4d15-b6c4-a530c7f4aa5d PREDICTED_SMILES: C1=CC...]
+node_10 --> node_11
+```
