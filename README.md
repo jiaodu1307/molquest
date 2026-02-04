@@ -70,3 +70,7 @@ The agent is equipped with the following tools to simulate operations in a chemi
 | `Get_Optical_Rotation` | Get Optical Rotation data | `uuid` |
 | `Calculate_DBE` | Calculate Double Bond Equivalent (DBE) | `uuid` |
 | `Check_Data` | Check available data for the molecule in the database, output as list | `uuid` |
+
+## License
+
+This project is licensed under the terms of the [MIT license](LICENSE).
