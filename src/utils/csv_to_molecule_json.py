@@ -26,19 +26,21 @@ def load_llm() -> ChatOpenAI:
     llm_config = config.get("llm", {})
     model_name = llm_config.get("model_name", "gpt-4o")
     temperature = float(llm_config.get("temperature", 0))
-    base_url = llm_config.get("base_url") or os.getenv("IDEALAB_BASE_URL") or os.getenv("OPENAI_API_BASE")
+    base_url = llm_config.get("base_url") or os.getenv("LLM_BASE_URL")
 
     load_dotenv()
-    api_key = os.getenv("IDEALAB_API_KEY") or os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("LLM_API_KEY")
 
-    is_o_series = bool(re.match(r"^o\d", str(model_name).strip().lower()))
     kwargs = {
         "model": model_name,
         "api_key": api_key,
         "base_url": base_url,
+        "temperature": temperature,
     }
-    if not is_o_series:
-        kwargs["temperature"] = temperature
+    
+    # Remove temperature for reasoning models that don't support it (e.g. o1)
+    if re.match(r"^o\d", str(model_name).strip().lower()):
+        kwargs.pop("temperature", None)
 
     return ChatOpenAI(**kwargs)
 

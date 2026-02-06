@@ -28,6 +28,51 @@ This project uses [uv](https://github.com/astral-sh/uv) for dependency managemen
    uv run main.py --sample SAMPLE_001
    ```
 
+## LLM Configuration
+
+MolQuest is designed to work with any LLM provider that supports the OpenAI API specification (e.g., OpenAI, Azure OpenAI, vLLM, DeepSeek, etc.).
+
+### 1. Environment Variables
+
+Set the following environment variables to configure your LLM connection:
+
+- `LLM_API_KEY`: Your API key.
+- `LLM_BASE_URL`: The base URL of the API server (optional, defaults to OpenAI's standard endpoint if not set).
+
+**Example:**
+
+```bash
+export LLM_API_KEY="sk-..."
+export LLM_BASE_URL="https://api.example.com/v1"
+```
+
+### 2. Configuration File
+
+You can fine-tune the LLM settings in `config/settings.yaml`:
+
+```yaml
+llm:
+  provider: "generic"       # Always use "generic" for OpenAI-compatible APIs
+  model_name: "gpt-4o"      # The specific model identifier to call
+  temperature: 0.0          # Sampling temperature
+  # base_url: "..."         # Optional: override env var
+  # api_key: "..."          # Optional: override env var
+```
+
+### Examples
+
+- **OpenAI**:
+  - `LLM_API_KEY`: "sk-..."
+  - `model_name`: "gpt-4o"
+
+- **Local Inference (e.g., vLLM, Ollama)**:
+  - `LLM_BASE_URL`: "http://localhost:8000/v1"
+  - `LLM_API_KEY`: "EMPTY" (if authentication is disabled)
+  - `model_name`: "meta-llama/Llama-3-70b-Instruct"
+
+- **Other Providers**:
+  - Simply point `LLM_BASE_URL` to the provider's compatible endpoint and set the corresponding `LLM_API_KEY`.
+
 ## Agent Architecture
 
 MolQuest uses [LangGraph](https://github.com/langchain-ai/langgraph) to build a cyclic reasoning agent (ReAct loop).

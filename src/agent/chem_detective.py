@@ -207,11 +207,7 @@ class MolQuestAgent(BaseAgent):
 
     def _setup_model(self):
         llm_config = self.config.get("llm", {})
-        provider = llm_config.get("provider", "idealab")
-
-        supported_providers = ["idealab", "arena", "nonelinear", "model_router", "zhipu", "dashscope", "dmxapi"]
-        if provider not in supported_providers:
-            raise ValueError(f"Unsupported llm.provider: {provider}. Supported: {supported_providers}")
+        provider = llm_config.get("provider", "generic")
 
         try:
             from langchain_openai import ChatOpenAI
@@ -223,55 +219,18 @@ class MolQuestAgent(BaseAgent):
 
         # Set default model based on provider
         default_model = "gpt-4o"
-        if provider == "zhipu":
-            default_model = "glm-4.7"
-        elif provider == "dashscope":
-            default_model = "qwen3-max-2026-01-23"
             
         model_name = llm_config.get("model_name", default_model)
-        model_name_lower = str(model_name).strip().lower()
         temperature = llm_config.get("temperature", 0)
-        is_o_series = bool(re.match(r"^o\d", model_name_lower))
-        is_gpt_52 = "gpt-5.2" in model_name_lower or "gpt5.2" in model_name_lower
         
         # Determine API credentials based on provider
-        base_url = llm_config.get("base_url")
-        api_key = None
+        base_url = llm_config.get("base_url") or os.getenv("LLM_BASE_URL")
+        api_key = llm_config.get("api_key") or os.getenv("LLM_API_KEY")
         
-        if provider == "idealab":
-            api_key = os.getenv("IDEALAB_API_KEY")
-            if not base_url:
-                base_url = os.getenv("IDEALAB_BASE_URL")
-        elif provider == "arena":
-            api_key = os.getenv("ARENA_API_KEY")
-            if not base_url:
-                base_url = os.getenv("ARENA_BASE_URL")
-        elif provider == "nonelinear":
-            api_key = os.getenv("NONELINEAR_API_KEY")
-            if not base_url:
-                base_url = os.getenv("NONELINEAR_BASE_URL")
-        elif provider == "model_router":
-            api_key = os.getenv("ModelRouter_API_KEY")
-            if not base_url:
-                base_url = os.getenv("ModelRouter_BASE_URL")
-        elif provider == "zhipu":
-            api_key = os.getenv("ZHIPU_API_KEY")
-            if not base_url:
-                base_url = os.getenv("ZHIPU_BASE_URL")
-        elif provider == "dashscope":
-            api_key = os.getenv("DASHSCOPE_API_KEY")
-            if not base_url:
-                base_url = os.getenv("DASHSCOPE_BASE_URL")
-        elif provider == "dmxapi":
-            api_key = os.getenv("DMXAPI_API_KEY")
-            if not base_url:
-                base_url = os.getenv("DMXAPI_BASE_URL")
-
         if not api_key:
-            logger.warning(f"API key for provider '{provider}' not found in environment variables. Model might fail.")
+            logger.warning(f"API key for provider '{provider}' not found in environment variables (LLM_API_KEY). Model might fail.")
 
         logger.info(f"Loading {provider} model: {model_name}")
-        logger.info(f"Using base_url: {base_url}")
         
         planner_streaming = bool(llm_config.get("planner_streaming", False))
         final_streaming = bool(llm_config.get("final_streaming", llm_config.get("streaming", True)))
@@ -307,28 +266,12 @@ class MolQuestAgent(BaseAgent):
         def build_model(streaming: bool):
             # Check for Completion API override or auto-detect for specific models
             use_completion = self.config.get("llm", {}).get("use_completion_api", False)
-            custom_endpoint = None
-
-            if "gpt-5.2-pro" in model_name and provider == "model_router":
-                use_completion = True
-                # Construct the full responses endpoint URL
-                if base_url:
-                    # Remove trailing slashes and ensure clean join
-                    clean_base = base_url.rstrip("/")
-                    if clean_base.endswith("/v1"):
-                        custom_endpoint = f"{clean_base}/responses"
-                    else:
-                        custom_endpoint = f"{clean_base}/openai/v1/responses"
-                
-                logger.info(f"Auto-enabling Completion API adapter for {model_name} with endpoint: {custom_endpoint}")
 
             extra_body: Dict[str, Any] = {}
             if enable_thinking:
                 extra_body["enable_thinking"] = True
-                if is_gpt_52:
-                    effort = reasoning_effort if isinstance(reasoning_effort, str) else None
-                    if effort:
-                        extra_body["reasoning_effort"] = effort.strip()
+                if reasoning_effort:
+                     extra_body["reasoning_effort"] = str(reasoning_effort).strip()
 
             if use_completion:
                 return CompletionChatAdapter(
@@ -338,62 +281,7 @@ class MolQuestAgent(BaseAgent):
                     temperature=temperature,
                     stop=stop_sequences,
                     seed=seed,
-                    endpoint_url=custom_endpoint,
                     **({"model_kwargs": {"extra_body": extra_body}} if extra_body else {})
-                )
-
-            if "gemini" in model_name.lower():
-                try:
-                    from langchain_google_genai import ChatGoogleGenerativeAI
-                except ImportError:
-                    raise RuntimeError(
-                        "Please install langchain-google-genai to use Gemini models: pip install langchain-google-genai"
-                    )
-
-                endpoint_source = base_url or os.getenv("ModelRouter_BASE_URL")
-                endpoint = None
-                if endpoint_source:
-                    if "/protocol/openai" in endpoint_source:
-                        endpoint = endpoint_source.replace("/protocol/openai", "/protocol/vertex")
-                    elif "openai" in endpoint_source:
-                        endpoint = "https://routify.alibaba-inc.com/protocol/vertex"
-                    else:
-                        endpoint = endpoint_source
-                else:
-                    endpoint = "https://routify.alibaba-inc.com/protocol/vertex"
-
-                if endpoint:
-                    if endpoint.endswith("/v1"):
-                        endpoint = endpoint[:-3]
-                    elif endpoint.endswith("/v1/"):
-                        endpoint = endpoint[:-4]
-
-                key_source = api_key
-                if "routify.alibaba-inc.com" in (endpoint or ""):
-                    key_source = os.getenv("ModelRouter_API_KEY") or key_source
-
-                if not key_source:
-                    logger.warning("Gemini model selected but no API key resolved; request will likely fail.")
-
-                key = key_source
-                if key and not key.startswith("Bearer "):
-                    key = f"Bearer {key}"
-
-                kwargs: Dict[str, Any] = {
-                    "model": model_name,
-                    "temperature": temperature,
-                    "google_api_key": key,
-                    "client_options": {"api_endpoint": endpoint},
-                    "convert_system_message_to_human": True,
-                    "streaming": streaming,
-                }
-                if stop_sequences is not None:
-                    kwargs["stop_sequences"] = stop_sequences
-
-                return _construct_with_optional_kwargs(
-                    ChatGoogleGenerativeAI,
-                    kwargs,
-                    ["stop_sequences"],
                 )
 
             kwargs = {
@@ -401,9 +289,8 @@ class MolQuestAgent(BaseAgent):
                 "api_key": api_key,
                 "base_url": base_url,
                 "streaming": streaming,
+                "temperature": temperature,
             }
-            if not is_o_series:
-                kwargs["temperature"] = temperature
             if seed is not None:
                 kwargs["seed"] = seed
             if stop_sequences is not None:

@@ -319,7 +319,7 @@ class RunArtifactsSaver:
             "created_at": datetime.now().isoformat(),
             "duration_ms": duration_ms,
             "llm": {
-                "provider": (llm_config or {}).get("provider", "openai"),
+                "provider": (llm_config or {}).get("provider", "generic"),
                 "model_name": (llm_config or {}).get("model_name", "unknown"),
                 "temperature": (llm_config or {}).get("temperature"),
                 "base_url": (llm_config or {}).get("base_url"),
