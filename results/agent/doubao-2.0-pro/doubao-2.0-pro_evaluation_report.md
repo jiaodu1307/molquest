@@ -1,7 +1,7 @@
 # SMILES Prediction Evaluation
 
-- **Predictions File**: `/Users/hantaolin/Documents/projects/nmr-agent/results/agent/version_3/doubao-2.0-pro/doubao-2.0-pro_merged_runs.json`
-- **Ground Truth File**: `/Users/hantaolin/Documents/projects/nmr-agent/data/processed/molecules_version_3_0113.json`
+- **Predictions File**: `results/agent/version_3/doubao-2.0-pro/doubao-2.0-pro_merged_runs.json`
+- **Ground Truth File**: `data/processed/molecules_version_3_0113.json`
 - **Accuracy**: 24.67% (132/535)
 - **Validity Rate**: 92.34% (494/535)
 - **Average Similarity**: 0.5710

@@ -1,7 +1,7 @@
 # SMILES Prediction Evaluation
 
-- **Predictions File**: `/Users/hantaolin/Documents/projects/nmr-agent/results/baseline/glm-4.7/glm-4.7_merged_runs.json`
-- **Ground Truth File**: `/Users/hantaolin/Documents/projects/nmr-agent/data/processed/molecules_version_3_0113.json`
+- **Predictions File**: `results/baseline/glm-4.7/glm-4.7_merged_runs.json`
+- **Ground Truth File**: `data/processed/molecules_version_3_0113.json`
 - **Accuracy**: 15.89% (85/535)
 - **Validity Rate**: 68.60% (367/535)
 - **Average Similarity**: 0.5051

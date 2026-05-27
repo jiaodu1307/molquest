@@ -1,7 +1,7 @@
 # SMILES Prediction Evaluation
 
-- **Predictions File**: `/Users/hantaolin/Documents/projects/nmr-agent/results/agent/version_3/gemini-3.1-pro/gemini-3.1-pro_merged_runs.json`
-- **Ground Truth File**: `/Users/hantaolin/Documents/projects/nmr-agent/data/processed/molecules_version_3_0113.json`
+- **Predictions File**: `results/agent/version_3/gemini-3.1-pro/gemini-3.1-pro_merged_runs.json`
+- **Ground Truth File**: `data/processed/molecules_version_3_0113.json`
 - **Accuracy**: 54.77% (293/535)
 - **Validity Rate**: 92.15% (493/535)
 - **Average Similarity**: 0.8079

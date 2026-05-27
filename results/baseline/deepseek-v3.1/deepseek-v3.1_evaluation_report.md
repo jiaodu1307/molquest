@@ -1,7 +1,7 @@
 # SMILES Prediction Evaluation
 
-- **Predictions File**: `/Users/hantaolin/Documents/projects/nmr-agent/results/final/baseline/deepseek-v3.1/deepseek-v3.1_merged_runs.json`
-- **Ground Truth File**: `/Users/hantaolin/Documents/projects/nmr-agent/data/processed/molecules_version_3_0113.json`
+- **Predictions File**: `results/final/baseline/deepseek-v3.1/deepseek-v3.1_merged_runs.json`
+- **Ground Truth File**: `data/processed/molecules_version_3_0113.json`
 - **Accuracy**: 6.79% (36/530)
 - **Validity Rate**: 86.23% (457/530)
 - **Average Similarity**: 0.3542

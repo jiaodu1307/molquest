@@ -1,7 +1,7 @@
 # SMILES Prediction Evaluation
 
-- **Predictions File**: `/Users/hantaolin/Documents/projects/nmr-agent/results/baseline/claude-opus-4.5-thinking/claude-opus-4.5-thinking_merged_runs.json`
-- **Ground Truth File**: `/Users/hantaolin/Documents/projects/nmr-agent/data/processed/molecules_version_3_0113.json`
+- **Predictions File**: `results/baseline/claude-opus-4.5-thinking/claude-opus-4.5-thinking_merged_runs.json`
+- **Ground Truth File**: `data/processed/molecules_version_3_0113.json`
 - **Accuracy**: 38.13% (204/535)
 - **Validity Rate**: 98.32% (526/535)
 - **Average Similarity**: 0.6855

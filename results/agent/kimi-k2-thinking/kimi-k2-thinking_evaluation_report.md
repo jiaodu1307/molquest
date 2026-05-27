@@ -1,7 +1,7 @@
 # SMILES Prediction Evaluation
 
-- **Predictions File**: `/Users/hantaolin/Documents/projects/nmr-agent/results/final/agent/kimi-k2-thinking/kimi-k2-thinking_merged_runs.json`
-- **Ground Truth File**: `/Users/hantaolin/Documents/projects/nmr-agent/data/processed/molecules_version_3_0113.json`
+- **Predictions File**: `results/final/agent/kimi-k2-thinking/kimi-k2-thinking_merged_runs.json`
+- **Ground Truth File**: `data/processed/molecules_version_3_0113.json`
 - **Accuracy**: 11.32% (60/530)
 - **Validity Rate**: 73.02% (387/530)
 - **Average Similarity**: 0.4717
