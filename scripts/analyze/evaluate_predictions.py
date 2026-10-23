@@ -293,7 +293,7 @@ def evaluate(predictions_path: str, ground_truth_path: str, output_md: Optional[
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate SMILES predictions.")
     parser.add_argument("--predictions", default="results/claude-sonnet-4_5/claude-sonnet-4_5merged_runs.json", help="Path to the predictions JSON file")
-    parser.add_argument("--ground_truth", default="data/processed/molecules_version_3_0113.json", help="Path to the ground truth JSON file")
+    parser.add_argument("--ground_truth", default="data/molecules_final.json", help="Path to the ground truth JSON file")
     parser.add_argument("--output-md", default="claude-sonnet-4_5_evaluation_report.md", help="Path to save the markdown report")
     parser.add_argument("--output-json", default=None, help="Path to save the evaluation results in JSON format")
     parser.add_argument("--visualize", action="store_true", help="Generate molecular structure images in markdown report")

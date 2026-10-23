@@ -279,8 +279,8 @@ def main():
     parser.add_argument(
         "--data-path",
         type=str,
-        default="data/processed/molecules_version_3_0113.json",
-        help="指定分子数据 JSON 文件路径 (默认: data/processed/molecules_version_3_0113.json)",
+        default="data/molecules_final.json",
+        help="指定分子数据 JSON 文件路径 (默认: data/molecules_final.json)",
     )
     
     args = parser.parse_args()

@@ -211,7 +211,7 @@ def plot_comparison():
     print("Calculating RMSCE (Confidence vs Similarity)...")
     
     # Load Ground Truth
-    gt_path = os.path.join(base_dir, "data/processed/molecules_version_3_0113.json")
+    gt_path = os.path.join(base_dir, "data/molecules_final.json")
     if os.path.exists(gt_path):
         try:
             with open(gt_path, 'r', encoding='utf-8') as f:

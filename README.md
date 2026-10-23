@@ -28,6 +28,12 @@ This project uses [uv](https://github.com/astral-sh/uv) for dependency managemen
    uv run main.py --sample SAMPLE_001
    ```
 
+## Data and reproducibility
+
+The repository includes the 530-record final dataset, original source snapshots,
+and the historical 535-record v3 dataset. See [data/README.md](data/README.md)
+for source information, version differences, checksums, and preparation commands.
+
 ## LLM Configuration
 
 MolQuest is designed to work with any LLM provider that supports the OpenAI API specification (e.g., OpenAI, Azure OpenAI, vLLM, DeepSeek, etc.).
