@@ -1,0 +1,36 @@
+name: Paper artifact integrity
+
+on:
+  push:
+    paths:
+      - 'paper/**'
+      - 'docs/**'
+      - 'README.md'
+      - 'data/molecules_final.json'
+      - '.github/workflows/paper-artifacts.yml'
+  pull_request:
+    paths:
+      - 'paper/**'
+      - 'docs/**'
+      - 'README.md'
+      - 'data/molecules_final.json'
+      - '.github/workflows/paper-artifacts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recompute metrics and tables from the pinned snapshot
+        run: |
+          python paper/scripts/compute_metrics.py
+          python paper/scripts/generate_tables.py
+          python paper/scripts/verify_artifacts.py
+          python paper/scripts/sync_github_results.py --check

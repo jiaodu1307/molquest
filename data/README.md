@@ -48,6 +48,15 @@ software license does not automatically apply to third-party source data.
 `manifest.json` records byte sizes and SHA-256 checksums for the published JSON
 and CSV snapshots (excluding the manifest itself and generated outputs).
 
+## Paper result snapshot
+
+The [`paper/`](../paper/README.md) bundle imports the manuscript's reconciled
+common-530 prediction snapshot and fixed metric protocol. Its molecular dataset
+is byte-for-byte identical to `molecules_final.json`. Use this bundle to reproduce
+the paper tables; legacy evaluation scripts and older saved results may use
+different metric denominators or prediction collections. See the
+[reconciliation audit](../paper/DATA_AUDIT.md).
+
 ## Preparation utilities
 
 Install the locked project dependencies with `uv sync`. Run from the repository
