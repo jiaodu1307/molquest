@@ -6,6 +6,9 @@
 
 **530 molecular tasks · 14 laboratory tools · 16 model variants · 32 evaluated configurations**
 
+[![arXiv](https://img.shields.io/badge/arXiv-2603.25253-b31b1b.svg)](https://arxiv.org/abs/2603.25253)
+[![EMNLP 2026](https://img.shields.io/badge/Findings-EMNLP%202026-blue)](https://aclanthology.org/2026.findings-emnlp.196/)
+
 [Quick start](#quick-start) · [Results](#benchmark-results) · [Benchmark details](docs/benchmark.md) · [Reproduce paper results](paper/README.md) · [Dataset](data/README.md)
 
 <img src="docs/assets/structure_constraints.png" alt="Molecular structure constrained by NMR, mass spectrometry and infrared evidence" width="560">
